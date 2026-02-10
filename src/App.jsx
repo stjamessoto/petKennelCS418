@@ -2,54 +2,53 @@ import React, { Component } from 'react';
 import ChildComponent from './ChildComponent';
 import { initialData } from './data';
 
+// Import your dog images
+import happyDog from './assets/happydog.jpg';
+import sadDog from './assets/saddog.jpg';
+
 class App extends Component {
   constructor(props) {
     super(props);
     
-    // TODO: Initialize state here
-    // this.state = {
-    //   characters: initialData
-    // };
+    this.state = {
+      characters: initialData.map(char => ({
+        ...char,
+        image: happyDog, // Start happy!
+        status: "I'm a good dog."
+      }))
+    };
   }
 
-  // Method to handle state changes from children
-  handleUpdate = (id) => {
-    console.log("Parent received event for ID:", id);
-    // TODO: Logic to update the specific child in this.state
-    // 1. Find the character in state by id
-    // 2. Change their image property (e.g., to a 'happy' version)
-    // 3. Update state using this.setState()
-    
-    /* HINT for students: 
+  handleUpdate = (id, mood) => {
     const updatedCharacters = this.state.characters.map(char => {
-      if(char.id === id) {
-         return { ...char, image: 'NEW_IMAGE_URL', status: 'Updated!' };
+      if (char.id === id) {
+        if (mood === 'happy') {
+          return { ...char, image: happyDog, status: "Yum! Thanks for the treat!" };
+        } else if (mood === 'sad') {
+          return { ...char, image: sadDog, status: "Wait... where are you going?" };
+        }
       }
       return char;
     });
+
     this.setState({ characters: updatedCharacters });
-    */
   }
 
   render() {
     return (
-      <div className="app-container" style={{ padding: '40px', fontFamily: 'Arial, sans-serif' }}>
-        <h1>Parent Component (Class-Based)</h1>
-        
-        <div className="children-container" style={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
-          {/* TODO: Map through your state characters here and render ChildComponents */}
-          {/* Example: 
-              {this.state && this.state.characters.map(char => (
-                <ChildComponent 
-                  key={char.id}
-                  id={char.id}
-                  name={char.name}
-                  image={char.image}
-                  status={char.status}
-                  onAction={this.handleUpdate}
-                />
-              ))} 
-          */}
+      <div className="app-container" style={{ padding: '40px' }}>
+        <h1>Dog Life Simulator</h1>
+        <div className="children-container" style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+          {this.state.characters.map(char => (
+            <ChildComponent 
+              key={char.id}
+              header={char.name}
+              image={char.image}
+              content={char.status}
+              // Pass the function with the ID so the parent knows WHICH dog to update
+              onAction={(mood) => this.handleUpdate(char.id, mood)}
+            />
+          ))}
         </div>
       </div>
     );
