@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ChildComponent from './ChildComponent';
+import ChildComponent from './childComponent';
 import { initialData } from './data';
 
 // Import your dog images
