@@ -37,7 +37,7 @@ class App extends Component {
   render() {
     return (
       <div className="app-container" style={{ padding: '40px' }}>
-        <h1>Dog Life Simulator</h1>
+        <h1>Pet Kennel</h1>
         <div className="children-container" style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
           {this.state.characters.map(char => (
             <ChildComponent 
