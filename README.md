@@ -1,34 +1,36 @@
-Instructions
+Pet Kennel ReadMe
 
+1. Repository Setup
 Fork this repository to your own GitHub account.
 
-Setup: Open your terminal in the project folder and run npm install.
+Clone your forked repository to your local machine.
 
-Coding Task:
+Open your terminal in the root project folder.
 
-State: In App.jsx (Class Component), initialize your state using the data from data.js.
+2. Installing Dependencies
+Run the following command to install the necessary packages:
+npm install
 
-Mapping: Use .map() to render at least two ChildComponent cards.
+3. Adding Assets (Important)
+Before running the application, you must ensure the visual assets are in the correct location so the components can render them.
 
-Events: Implement a method in the Parent to change a child's image/status. Pass this method to the Child via props.
+Navigate to the src/assets directory.
 
-Child Logic: Complete ChildComponent.jsx to display the props and trigger the parent's method on button click.
+Add your image files (e.g., .jpg, .png, or .svg) into this folder.
+
+Ensure the filenames in your data.js or state match the filenames you've added to this directory.
 
 Why Vite?
+We are using Vite instead of the deprecated Create React App for several key reasons:
 
-We are using Vite instead of the deprecated Create React App.
+Files: Components use the .jsx extension for better tooling support and clarity.
 
-Files: Ensure your components use the .jsx extension.
+Speed: The development server starts almost instantly thanks to native ESM-based HMR (Hot Module Replacement).
 
-Speed: You'll notice the development server starts almost instantly.
+Modern Standards: Vite provides a leaner, faster build process that aligns with modern web standards.
 
 How to Run
-
 Local Development
-
-Run the following command to start the Vite dev server:
-
+To start the Vite development server, run:
 npm run dev
-
-
-Note: Vite defaults to port 5173. Check your terminal output for the local URL.
+Note: Vite defaults to port 5173. Check your terminal output for the local URL (usually http://localhost:5173) to view your application in the browser.
