@@ -5,9 +5,11 @@ import { initialData } from './data';
 // Import your dog images
 import happyDog from './assets/happydog.jpg';
 import sadDog from './assets/saddog.jpg';
+import angryDog from './assets/angrydog.jpg'; // Added
 // Import your alligator images
 import happyGator from './assets/happygator.jpg';
 import sadGator from './assets/sadgator.jpg';
+import angryGator from './assets/angrygator.jpg'; // Added
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +17,6 @@ class App extends Component {
     
     this.state = {
       characters: initialData.map(char => {
-        // Determine starting image based on species
         const isGator = char.species === 'alligator';
         return {
           ...char,
@@ -31,17 +32,28 @@ class App extends Component {
       if (char.id === id) {
         const isGator = char.species === 'alligator';
 
+        // Logic for Happy
         if (mood === 'happy') {
           return { 
             ...char, 
             image: isGator ? happyGator : happyDog, 
             status: isGator ? "Chomp! Happy swamp vibes!" : "Yum! Thanks for the treat!" 
           };
-        } else if (mood === 'sad') {
+        } 
+        // Logic for Sad
+        else if (mood === 'sad') {
           return { 
             ...char, 
             image: isGator ? sadGator : sadDog, 
             status: isGator ? "In a while... crocodile..." : "Wait... where are you going?" 
+          };
+        } 
+        // Logic for Angry
+        else if (mood === 'angry') {
+          return {
+            ...char,
+            image: isGator ? angryGator : angryDog,
+            status: isGator ? "SNAP! Stay away from my swamp!" : "Grrr! Stop taking my ball!"
           };
         }
       }
@@ -62,6 +74,7 @@ class App extends Component {
               header={char.name}
               image={char.image}
               content={char.status}
+              // This will now pass 'happy', 'sad', or 'angry' back up
               onAction={(mood) => this.handleUpdate(char.id, mood)}
             />
           ))}
